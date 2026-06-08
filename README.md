@@ -130,9 +130,7 @@ http://localhost:8501
 * heart disease detection
 * cancer diagnosis
 * healthcare machine learning
-* COVID forecasting
 
----
 
 ## 📈 Results
 

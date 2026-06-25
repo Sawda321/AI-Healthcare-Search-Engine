@@ -7,7 +7,7 @@ from collections import defaultdict
 import math
 import time
 
-# --- STEP 1: Text Preprocessing (Required) ---
+# STEP 1: Text Preprocessing (Required) ---
 # Cleans the text by removing special characters and common stop words [cite: 38, 56]
 def preprocess(text):
     text = re.sub(r'[^a-zA-Z\s]', '', str(text).lower())
@@ -16,7 +16,7 @@ def preprocess(text):
     stop_words = set(["the", "is", "and", "a", "in", "to", "of", "it", "with", "for", "on", "as", "an", "by", "at"])
     return [w for w in words if w not in stop_words]
 
-# --- STEP 2: Inverted Index Implementation (Core Requirement) ---
+# STEP 2: Inverted Index Implementation (Core Requirement) ---
 # Maps terms to document IDs for efficient retrieval [cite: 16, 19, 20]
 def build_inverted_index(papers):
     inverted_index = defaultdict(list)
@@ -29,7 +29,7 @@ def build_inverted_index(papers):
             inverted_index[word].append(idx)
     return inverted_index
 
-# --- STEP 3: Ranking Mechanism (TF-IDF) ---
+# STEP 3: Ranking Mechanism (TF-IDF) 
 # Ranks documents based on term frequency and significance 
 def calculate_tfidf(query, inverted_index, total_docs):
     query_words = preprocess(query)
@@ -45,7 +45,7 @@ def calculate_tfidf(query, inverted_index, total_docs):
                 scores[doc_id] += idf 
     return sorted(scores.items(), key=lambda x: x[1], reverse=True)
 
-# --- STEP 4: Keyword Highlighting (Bonus Feature) ---
+# STEP 4: Keyword Highlighting (Bonus Feature) 
 # Visually highlights query terms in search results [cite: 76]
 def highlight_keywords(text, query):
     query_words = preprocess(query)
@@ -55,7 +55,7 @@ def highlight_keywords(text, query):
             text = pattern.sub(r'<mark style="background-color: #fff3cd; color: #000; border-radius: 2px;">\1</mark>', text)
     return text
 
-# --- Streamlit UI Configuration [cite: 69] ---
+# Streamlit UI Configuration [cite: 69] 3
 st.set_page_config(page_title="Specialized Research Search Engine", layout="wide")
 
 # Data Loading with Caching for Speed
@@ -68,14 +68,14 @@ def load_all_data():
 
 papers, inverted_index = load_all_data()
 
-# --- Sidebar UI ---
+# Sidebar UI
 st.sidebar.markdown("### ⚙️ Engine Metadata")
 st.sidebar.info(f"📊 **Papers Indexed:** {len(papers):,}")
 st.sidebar.markdown("---")
 st.sidebar.markdown("**Logic Architecture:** [cite: 16]")
 st.sidebar.code("Term → List[DocIDs]\nRanking: TF-IDF Score")
 
-# --- Main Search Panel [cite: 74] ---
+# Main Search Panel [cite: 74]
 st.markdown("<h1 style='text-align: center;'>🔬 Specialized Research Search Engine</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #aaa;'>Domain: AI & Healthcare Research Papers [cite: 7, 10]</p>", unsafe_allow_html=True)
 
@@ -91,7 +91,7 @@ with col2:
 
 st.markdown("---")
 
-# --- Result Processing & Display [cite: 25, 27] ---
+# Result Processing & Display [cite: 25, 27] 
 if query:
     start_time = time.time()
     query_words = preprocess(query)
